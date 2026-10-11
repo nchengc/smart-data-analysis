@@ -1,0 +1,79 @@
+- generic [active] [ref=f5e1]:
+  - generic [ref=f5e51]:
+    - banner [ref=f5e52]:
+      - img "rocket" [ref=f5e53]
+      - heading "智能数据分析系统" [level=5] [ref=f5e56]
+      - generic [ref=f5e57]: Phase 1 · 三栏 + Mock
+      - generic [ref=f5e58]:
+        - generic [ref=f5e59]: 欢迎示例 · 销售概览
+        - button "reload 重置数据" [ref=f5e61] [cursor=pointer]:
+          - img "reload" [ref=f5e63]
+          - generic [ref=f5e66]: 重置数据
+        - button "logout 退出" [ref=f5e68] [cursor=pointer]:
+          - img "logout" [ref=f5e70]
+          - generic [ref=f5e73]: 退出
+    - generic [ref=f5e74]:
+      - complementary [ref=f5e75]:
+        - generic [ref=f5e77]:
+          - button "plus 新建会话" [ref=f5e78] [cursor=pointer]:
+            - img "plus" [ref=f5e80]
+            - generic [ref=f5e84]: 新建会话
+          - generic [ref=f5e85]: 会话列表（3）
+          - list [ref=f5e90]:
+            - listitem [ref=f5e91] [cursor=pointer]:
+              - generic [ref=f5e92]:
+                - img "message" [ref=f5e94]
+                - generic [ref=f5e97]: 欢迎示例 · 销售概览
+              - list [ref=f5e98]:
+                - listitem [ref=f5e99]:
+                  - img "edit" [ref=f5e100]
+                  - emphasis [ref=f5e103]
+                - listitem [ref=f5e104]:
+                  - img "delete" [ref=f5e105]
+            - listitem [ref=f5e108] [cursor=pointer]:
+              - generic [ref=f5e109]:
+                - img "message" [ref=f5e111]
+                - generic [ref=f5e114]: 品类 Top10
+              - list [ref=f5e115]:
+                - listitem [ref=f5e116]:
+                  - img "edit" [ref=f5e117]
+                  - emphasis [ref=f5e120]
+                - listitem [ref=f5e121]:
+                  - img "delete" [ref=f5e122]
+            - listitem [ref=f5e125] [cursor=pointer]:
+              - generic [ref=f5e126]:
+                - img "message" [ref=f5e128]
+                - generic [ref=f5e131]: 门店对比
+              - list [ref=f5e132]:
+                - listitem [ref=f5e133]:
+                  - img "edit" [ref=f5e134]
+                  - emphasis [ref=f5e137]
+                - listitem [ref=f5e138]:
+                  - img "delete" [ref=f5e139]
+          - generic [ref=f5e142]: Phase 1：所有数据保存在浏览器 localStorage
+      - main [ref=f5e143]:
+        - generic [ref=f5e144]:
+          - generic [ref=f5e147]:
+            - img "暂无数据" [ref=f5e149]
+            - generic [ref=f5e162]:
+              - text: 暂无消息。试试输入
+              - generic [ref=f5e163]: 华东区上月销售额
+              - text: /
+              - generic [ref=f5e164]: 各品类销量 Top10
+          - generic [ref=f5e165]:
+            - generic [ref=f5e166]:
+              - textbox "用自然语言描述你的数据分析需求，例如：上月华东区销售额是多少？" [ref=f5e167]
+              - button "send 发送" [disabled] [ref=f5e168]:
+                - generic:
+                  - img "send"
+                - generic: 发送
+            - generic [ref=f5e169]: Phase 1：所有回答由本地 mock 生成（不调用后端）。Enter 发送，Shift+Enter 换行。
+      - complementary [ref=f5e170]:
+        - generic [ref=f5e173]:
+          - generic [ref=f5e174]: 📊 可视化图表
+          - generic [ref=f5e178]:
+            - img "暂无数据" [ref=f5e180]
+            - generic [ref=f5e192]: 还没有数据。先在中间问答区问一个问题试试。
+  - generic [ref=f5e194]:
+    - img "check-circle" [ref=f5e195]
+    - generic [ref=f5e198]: 登录成功
