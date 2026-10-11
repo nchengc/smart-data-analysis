@@ -1,0 +1,21 @@
+- generic [ref=f5e6]:
+  - generic [ref=f5e8]:
+    - heading "智能数据分析系统" [level=3] [ref=f5e9]
+    - generic [ref=f5e10]: Phase 1 · Demo 登录（账号 demo / 密码 demo）
+  - generic [ref=f5e12]:
+    - generic [ref=f5e14]:
+      - generic "账号" [ref=f5e16]: "* 账号"
+      - generic [ref=f5e20]:
+        - img "user" [ref=f5e22]
+        - textbox "* 账号" [active] [ref=f5e25]:
+          - /placeholder: demo
+          - text: demo
+    - generic [ref=f5e27]:
+      - generic "密码" [ref=f5e29]: "* 密码"
+      - generic [ref=f5e33]:
+        - img "lock" [ref=f5e35]
+        - textbox "* 密码" [ref=f5e38]:
+          - /placeholder: demo
+          - text: demo
+        - img "eye-invisible" [ref=f5e40] [cursor=pointer]
+    - button "登 录" [ref=f5e49] [cursor=pointer]
