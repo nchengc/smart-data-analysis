@@ -1,6 +1,6 @@
 // Phase 1 本地 mock 数据契约与默认 seed
 
-export type ChartType = 'bar' | 'line' | 'pie' | 'scatter'
+export type ChartType = 'bar' | 'line' | 'pie' | 'scatter' | 'table'
 
 export interface ChartSpec {
   type: ChartType

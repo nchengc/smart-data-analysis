@@ -1,0 +1,48 @@
+# Playwright 截图缓存（不要进库）
+.playwright-mcp/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+.cache/
+
+# Env & DB
+.env
+.env.local
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+backend/data/
+
+# Phase 1 截图
+phase1-workspace.png
+phase3-workspace.png

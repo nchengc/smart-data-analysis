@@ -1,5 +1,6 @@
 import ReactECharts from 'echarts-for-react'
 import type { ChartSpec, ChartData } from '../lib/mockData'
+import { buildEChartsOption, inferChart } from '../lib/chartAdapter'
 
 interface Props {
   chart: ChartSpec
@@ -7,86 +8,19 @@ interface Props {
   height?: number
 }
 
-function buildOption(chart: ChartSpec, data: ChartData) {
-  if (chart.type === 'pie') {
-    const x = chart.x ?? 'name'
-    const y = chart.y ?? 'value'
-    return {
-      tooltip: { trigger: 'item' },
-      legend: { type: 'scroll', bottom: 0 },
-      series: [
-        {
-          name: chart.title ?? '',
-          type: 'pie',
-          radius: ['35%', '65%'],
-          data: data.map((d) => ({ name: String(d[x] ?? ''), value: Number(d[y] ?? 0) })),
-        },
-      ],
-    }
-  }
-
-  if (chart.type === 'line') {
-    const x = chart.x ?? 'x'
-    const yKey = chart.y ?? 'y'
-    const series = (Array.isArray(yKey) ? yKey : [yKey]).map((k) => ({
-      name: k,
-      type: 'line',
-      smooth: true,
-      data: data.map((d) => Number(d[k] ?? 0)),
-    }))
-    return {
-      tooltip: { trigger: 'axis' },
-      legend: { bottom: 0 },
-      xAxis: { type: 'category', data: data.map((d) => String(d[x] ?? '')) },
-      yAxis: { type: 'value' },
-      grid: { left: 40, right: 20, top: 20, bottom: 40 },
-      series,
-    }
-  }
-
-  if (chart.type === 'scatter') {
-    const x = chart.x ?? 'x'
-    const y = chart.y ?? 'y'
-    return {
-      tooltip: { trigger: 'item' },
-      xAxis: { type: 'value' },
-      yAxis: { type: 'value' },
-      grid: { left: 40, right: 20, top: 20, bottom: 40 },
-      series: [
-        {
-          type: 'scatter',
-          data: data.map((d) => [Number(d[x] ?? 0), Number(d[y] ?? 0)]),
-        },
-      ],
-    }
-  }
-
-  // bar (default)
-  const x = chart.x ?? 'x'
-  const y = chart.y ?? 'y'
-  const series = (Array.isArray(y) ? y : [y]).map((k) => ({
-    name: k,
-    type: 'bar',
-    data: data.map((d) => Number(d[k] ?? 0)),
-  }))
-  return {
-    tooltip: { trigger: 'axis' },
-    legend: { bottom: 0 },
-    xAxis: { type: 'category', data: data.map((d) => String(d[x] ?? '')) },
-    yAxis: { type: 'value' },
-    grid: { left: 40, right: 20, top: 20, bottom: 40 },
-    series,
-  }
-}
-
 export default function EChartsView({ chart, data, height = 260 }: Props) {
+  // 智能推断：如果 chart 不完整或列名不匹配，用 inferChart 兜底
+  const inferred = inferChart(data, chart)
+  const finalSpec: ChartSpec = { ...inferred, ...chart, title: chart.title ?? inferred.title }
+  const option = buildEChartsOption(finalSpec, data)
   return (
     <ReactECharts
-      option={buildOption(chart, data)}
+      option={option}
       style={{ height, width: '100%' }}
       notMerge
       lazyUpdate
       theme="light"
+      opts={{ renderer: 'canvas' }}
     />
   )
 }
