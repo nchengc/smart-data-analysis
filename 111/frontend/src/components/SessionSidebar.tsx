@@ -141,7 +141,7 @@ export default function SessionSidebar({
         />
       </div>
       <div style={{ fontSize: 11, color: '#bbb', padding: '8px 4px 0' }}>
-        Phase 1：所有数据保存在浏览器 localStorage
+        Phase 3：会话与消息持久化到后端 SQLite
       </div>
     </div>
   )

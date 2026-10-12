@@ -1,0 +1,116 @@
+- generic [ref=e51]:
+  - banner [ref=e52]:
+    - img "rocket" [ref=e53]
+    - heading "智能数据分析系统" [level=5] [ref=e56]
+    - generic [ref=e57]: Phase 3 · 联调
+    - generic [ref=e58]:
+      - generic [ref=e59]: 新会话
+      - button "reload 刷新" [ref=e61] [cursor=pointer]:
+        - img "reload" [ref=e63]
+        - generic [ref=e66]: 刷新
+      - button "logout 退出" [ref=e68] [cursor=pointer]:
+        - img "logout" [ref=e70]
+        - generic [ref=e73]: 退出
+  - generic [ref=e74]:
+    - complementary [ref=e75]:
+      - generic [ref=e77]:
+        - button "plus 新建会话" [ref=e78] [cursor=pointer]:
+          - img "plus" [ref=e80]
+          - generic [ref=e84]: 新建会话
+        - generic [ref=e85]: 会话列表（6）
+        - list [ref=e90]:
+          - listitem [ref=e91] [cursor=pointer]:
+            - generic [ref=e92]:
+              - img "message" [ref=e94]
+              - generic [ref=e97]: 新会话
+            - list [ref=e98]:
+              - listitem [ref=e99]:
+                - img "edit" [ref=e100]
+                - emphasis [ref=e103]
+              - listitem [ref=e104]:
+                - img "delete" [ref=e105]
+          - listitem [ref=e108] [cursor=pointer]:
+            - generic [ref=e109]:
+              - img "message" [ref=e111]
+              - generic [ref=e114]: abc
+            - list [ref=e115]:
+              - listitem [ref=e116]:
+                - img "edit" [ref=e117]
+                - emphasis [ref=e120]
+              - listitem [ref=e121]:
+                - img "delete" [ref=e122]
+          - listitem [ref=e125] [cursor=pointer]:
+            - generic [ref=e126]:
+              - img "message" [ref=e128]
+              - generic [ref=e131]: Hello
+            - list [ref=e132]:
+              - listitem [ref=e133]:
+                - img "edit" [ref=e134]
+                - emphasis [ref=e137]
+              - listitem [ref=e138]:
+                - img "delete" [ref=e139]
+          - listitem [ref=e142] [cursor=pointer]:
+            - generic [ref=e143]:
+              - img "message" [ref=e145]
+              - generic [ref=e148]: 新会话
+            - list [ref=e149]:
+              - listitem [ref=e150]:
+                - img "edit" [ref=e151]
+                - emphasis [ref=e154]
+              - listitem [ref=e155]:
+                - img "delete" [ref=e156]
+          - listitem [ref=e159] [cursor=pointer]:
+            - generic [ref=e160]:
+              - img "message" [ref=e162]
+              - generic [ref=e165]: 新会话
+            - list [ref=e166]:
+              - listitem [ref=e167]:
+                - img "edit" [ref=e168]
+                - emphasis [ref=e171]
+              - listitem [ref=e172]:
+                - img "delete" [ref=e173]
+          - listitem [ref=e176] [cursor=pointer]:
+            - generic [ref=e177]:
+              - img "message" [ref=e179]
+              - generic [ref=e182]: 新会话
+            - list [ref=e183]:
+              - listitem [ref=e184]:
+                - img "edit" [ref=e185]
+                - emphasis [ref=e188]
+              - listitem [ref=e189]:
+                - img "delete" [ref=e190]
+        - generic [ref=e193]: Phase 1：所有数据保存在浏览器 localStorage
+    - main [ref=e194]:
+      - generic [ref=e195]:
+        - generic [ref=e244]:
+          - generic [ref=e246]:
+            - img "user" [ref=e248]
+            - generic [ref=e251]: 上月华东区销售总额
+          - generic [ref=e256]:
+            - img "robot" [ref=e258]
+            - generic [ref=e261]: （无总结）
+        - generic [ref=e216]:
+          - generic [ref=e217]:
+            - textbox "用自然语言描述你的数据分析需求，例如：上月华东区销售额是多少？" [ref=e218]
+            - button "send 发送" [disabled] [ref=e219]:
+              - generic:
+                - img "send"
+              - generic: 发送
+          - generic [ref=e220]: Phase 3：流式调用后端 /api/chat/stream。Enter 发送，Shift+Enter 换行。
+    - complementary [ref=e221]:
+      - generic [ref=e223]:
+        - generic [ref=e224]:
+          - generic [ref=e225]: 📊 可视化
+          - generic [ref=e229]:
+            - img "暂无数据" [ref=e231]
+            - generic [ref=e243]: 本次回答未返回图表
+        - generic [ref=e266]:
+          - tablist [ref=e267]:
+            - generic [ref=e269]:
+              - tab "数据" [selected] [ref=e271] [cursor=pointer]
+              - tab "SQL" [ref=e273] [cursor=pointer]
+              - tab "说明" [ref=e275] [cursor=pointer]
+          - tabpanel "数据" [ref=e278]:
+            - generic [ref=e281]:
+              - img "暂无数据" [ref=e283]
+              - generic [ref=e295]: 无数据

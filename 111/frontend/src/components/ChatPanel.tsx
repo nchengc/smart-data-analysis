@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 import { Button, Empty, Input, Space, Spin, Tag, Avatar } from 'antd'
 import { SendOutlined, UserOutlined, RobotOutlined } from '@ant-design/icons'
 import type { ChatMessage } from '../lib/mockData'
-import EChartsView from './EChartsView'
 import MessageItem from './MessageItem'
 
 interface Props {
   messages: ChatMessage[]
   pending: boolean
+  streamingPhase?: string
   onAsk: (q: string) => void | Promise<void>
   disabled?: boolean
 }
 
-export default function ChatPanel({ messages, pending, onAsk, disabled }: Props) {
+export default function ChatPanel({ messages, pending, streamingPhase, onAsk, disabled }: Props) {
   const [draft, setDraft] = useState('')
   const scrollRef = useRef<HTMLDivElement | null>(null)
 
@@ -46,7 +46,7 @@ export default function ChatPanel({ messages, pending, onAsk, disabled }: Props)
               description={
                 <span>
                   暂无消息。<br />
-                  试试输入 <Tag color="blue">华东区上月销售额</Tag> / <Tag color="blue">各品类销量 Top10</Tag>
+                  试试输入 <Tag color="blue">上月华东区销售额</Tag> / <Tag color="blue">各品类销量 Top10</Tag>
                 </span>
               }
             />
@@ -59,7 +59,10 @@ export default function ChatPanel({ messages, pending, onAsk, disabled }: Props)
             {pending && (
               <div style={{ display: 'flex', gap: 8, alignItems: 'center', paddingLeft: 4 }}>
                 <Avatar icon={<RobotOutlined />} style={{ background: '#1677ff' }} />
-                <Spin size="small" /> <span style={{ color: '#999' }}>正在生成回答（mock）…</span>
+                <Spin size="small" />{' '}
+                <span style={{ color: '#999' }}>
+                  {streamingPhase || '正在生成回答…'}
+                </span>
               </div>
             )}
           </Space>
@@ -98,7 +101,7 @@ export default function ChatPanel({ messages, pending, onAsk, disabled }: Props)
           </Button>
         </Space.Compact>
         <div style={{ fontSize: 11, color: '#bbb', marginTop: 6 }}>
-          Phase 1：所有回答由本地 mock 生成（不调用后端）。Enter 发送，Shift+Enter 换行。
+          Phase 3：流式调用后端 /api/chat/stream。Enter 发送，Shift+Enter 换行。
         </div>
       </div>
     </div>
