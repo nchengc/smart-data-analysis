@@ -64,6 +64,7 @@ export const getSchema = (): Promise<SchemaInfo> => jget('/schema')
 // ---------- Chat (SSE) ----------
 export type StreamEvent =
   | { type: 'phase'; payload: string }
+  | { type: 'mode'; payload: string }
   | { type: 'sql'; payload: string }
   | { type: 'data'; payload: { rows: any[]; row_count: number } }
   | { type: 'chart'; payload: ChartSpec }
@@ -73,6 +74,7 @@ export type StreamEvent =
 
 export interface StreamHandlers {
   onPhase?: (msg: string) => void
+  onMode?: (mode: string) => void
   onSql?: (sql: string) => void
   onData?: (rows: any[], row_count: number) => void
   onChart?: (chart: ChartSpec) => void
@@ -112,7 +114,6 @@ export async function streamChat(
     while ((sep = buffer.indexOf('\n\n')) >= 0) {
       const frame = buffer.slice(0, sep)
       buffer = buffer.slice(sep + 2)
-      const evLine = frame.split('\n').find((l) => l.startsWith('event:'))
       const dataLine = frame.split('\n').find((l) => l.startsWith('data:'))
       if (!dataLine) continue
       const dataStr = dataLine.replace(/^data:\s*/, '')
@@ -126,6 +127,9 @@ export async function streamChat(
       switch (payload.type) {
         case 'phase':
           handlers.onPhase?.(payload.payload as string)
+          break
+        case 'mode':
+          handlers.onMode?.(payload.payload as string)
           break
         case 'sql':
           handlers.onSql?.(payload.payload as string)

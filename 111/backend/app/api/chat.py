@@ -22,6 +22,7 @@ def _run_in_thread(question_text: str, sid: str, q: queue.Queue) -> None:
     try:
         q.put({"type": "phase", "payload": "正在理解问题并检索 Schema…"})
         result = run_chat(sid, question_text)
+        q.put({"type": "mode", "payload": result.mode})
         q.put({"type": "sql", "payload": result.sql})
         q.put({"type": "data", "payload": {"rows": result.data, "row_count": result.row_count}})
         q.put({"type": "chart", "payload": result.chart})

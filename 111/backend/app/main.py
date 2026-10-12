@@ -55,3 +55,8 @@ def health() -> dict:
 app.include_router(sessions_api.router)
 app.include_router(schema_api.router)
 app.include_router(chat_api.router)
+try:
+    from app.api import demo as demo_api
+    app.include_router(demo_api.router)
+except Exception as e:
+    print(f"[startup] 加载 demo 路由失败：{e}")

@@ -12,7 +12,12 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # 阿里云百炼 DashScope
+    # MiniMax（兼容 OpenAI 协议）
+    llm_provider: str = "minimax"
+    minimax_api_key: str = ""
+    minimax_base_url: str = "https://api.minimaxi.com/v1"
+
+    # 旧：DASHSCOPE（保留字段以兼容）
     dashscope_api_key: str = ""
 
     # 服务器
@@ -25,9 +30,9 @@ class Settings(BaseSettings):
         "http://localhost:5173,http://127.0.0.1:5173"
     )
 
-    # Phase 2+ ：Qwen 模型
-    qwen_chat_model: str = "qwen3-plus"
-    qwen_sql_model: str = "qwen3-coder-plus"
+    # Phase 2+ ：模型
+    qwen_chat_model: str = "MiniMax-Text-01"
+    qwen_sql_model: str = "MiniMax-Text-01"
     request_timeout: int = 120
 
     # SQLite

@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from 'react'
 import { streamChat, type StreamHandlers } from '../lib/api'
-import type { ChatMessage, ChartSpec } from '../lib/mockData'
+import type { ChartSpec } from '../lib/mockData'
 
 export interface UseChatStreamState {
   pending: boolean
@@ -10,7 +10,7 @@ export interface UseChatStreamState {
 }
 
 export function useChatStream(opts: {
-  onEvent: (kind: 'sql' | 'data' | 'chart' | 'summary' | 'phase' | 'error', payload: any) => void
+  onEvent: (kind: 'sql' | 'data' | 'chart' | 'summary' | 'phase' | 'error' | 'mode', payload: any) => void
   onDone: (summary: string, sql: string, chart?: ChartSpec, data?: any[]) => void
   onError: (msg: string) => void
 }) {
@@ -20,7 +20,6 @@ export function useChatStream(opts: {
   const start = useCallback(
     async (sessionId: string, question: string) => {
       if (!sessionId) return
-      // 取消上一次
       abortRef.current?.abort()
       const ctrl = new AbortController()
       abortRef.current = ctrl
@@ -30,9 +29,14 @@ export function useChatStream(opts: {
       let collectedChart: ChartSpec | undefined
       let collectedData: any[] | undefined
       let collectedSummary = ''
+      let collectedMode = ''
 
       const handlers: StreamHandlers = {
         onPhase: (msg) => opts.onEvent('phase', msg),
+        onMode: (m) => {
+          collectedMode = m
+          opts.onEvent('mode', m)
+        },
         onSql: (sql) => {
           collectedSql = sql
           opts.onEvent('sql', sql)
@@ -51,11 +55,18 @@ export function useChatStream(opts: {
         },
         onError: (msg) => {
           opts.onError(msg)
-          setState({ pending: true, error: msg })  // keep pending so we can fallback
+          setState({ pending: true, error: msg })
         },
-        onDone: (meta) => {
+        onDone: () => {
           setState({ pending: false, error: null })
-          opts.onDone(collectedSummary, collectedSql, collectedChart, collectedData)
+          const modeLabel =
+            collectedMode === 'followup'
+              ? '\n\n_(基于上一轮的追问改写)_'
+              : collectedMode === 'chart_only'
+                ? '\n\n_(仅切换图表类型)_'
+                : ''
+          const finalSummary = collectedSummary + modeLabel
+          opts.onDone(finalSummary, collectedSql, collectedChart, collectedData)
         },
       }
 
