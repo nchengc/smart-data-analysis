@@ -1,0 +1,11 @@
+{
+  "name": "smart-data-analysis-desktop",
+  "private": true,
+  "version": "1.0.0",
+  "description": "桌面应用打包（PyWebView + PyInstaller）",
+  "scripts": {
+    "build:frontend": "cd frontend && npm install && npm run build && cp -r dist ../frontend_dist",
+    "build:python": "pip install pyinstaller pywebview",
+    "dist": "pyinstaller desktop.spec"
+  }
+}
